@@ -15,8 +15,8 @@ public class StudentController {
     StudentService studentService;
 
     @GetMapping
-    public List<Student> getAllStudents(){
-        return (List<Student>) studentService.getAllStudents();
+    public Iterable<Student> getAllStudents(){
+        return  studentService.getAllStudents();
     }
     @PostMapping
     public Long registerNewStudent(@RequestBody Student student){

@@ -1,4 +1,4 @@
-package com.Kuleli.School;
+package com.college.registration;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

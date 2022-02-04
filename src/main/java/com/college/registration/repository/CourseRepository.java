@@ -11,7 +11,7 @@ public interface CourseRepository extends CrudRepository<Course,Long>, JpaSpecif
 
 
 
-    List<Course> getAllByOrderByName();
+    Iterable<Course> findAll();
 
 
 

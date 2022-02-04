@@ -15,13 +15,15 @@ public class CourseController {
     @Autowired
     CourseService courseService;
     @GetMapping
-    public List<Course> getAllCourses(){
+    public Iterable<Course> getAllCourses(){
         return courseService.getAllCourse();
     }
+
+
     @PostMapping
-   public Long addCourse(@RequestBody Course course){
-       courseService.addCourse(course);
-       return course.getCourseById();
+   public Long addNewCourse(@RequestBody Course course){
+       return courseService.addCourse(course);
+
     }
 
 }
