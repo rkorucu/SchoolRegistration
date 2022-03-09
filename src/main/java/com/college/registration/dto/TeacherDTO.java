@@ -7,26 +7,32 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class TeacherDTO {
-    private Long teacherId;
+
     private String fullName;
+    private Long teacherId;
+private Set<Course> courses=new HashSet<>();
 
-  private  Set<Course> courses=new HashSet<>();
 
-    public TeacherDTO(Teacher teacher) {
-        this. teacherId= teacher.getTeacherId();
-        this.fullName = teacher.getFullName();
-    }
 
     public TeacherDTO(){
 
   }
 
-    public Long getCourseId() {
-        return teacherId ;
+    public TeacherDTO(String fullName, Long teacherId) {
+        this.fullName = fullName;
+        this.teacherId = teacherId;
     }
 
-    public void setCourseId(Long courseId) {
-        this. teacherId= courseId;
+    public Long getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(Long teacherId) {
+        this.teacherId = teacherId;
+    }
+
+    public TeacherDTO(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getFullName() {
@@ -37,11 +43,8 @@ public class TeacherDTO {
         this.fullName = fullName;
     }
 
+
     public Set<Course> getCourses() {
         return courses;
-    }
-
-    public void setCourses(Set<Course> courses) {
-        this.courses = courses;
     }
 }

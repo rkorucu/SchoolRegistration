@@ -13,8 +13,8 @@ public class TeacherService {
         return teacherRepository.findAll();
     }
 
-    public Long addTeacher(Teacher teacher) {
-        teacherRepository.save(teacher);
-        return teacher.getTeacherId();
+    public Long addNewTeacher(Teacher teacher) {
+        return teacherRepository.save(teacher).getTeacherId();
+
     }
 }

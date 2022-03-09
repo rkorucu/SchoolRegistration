@@ -1,5 +1,7 @@
 package com.college.registration.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,9 +14,14 @@ public class Student {
    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long studentId;
     private String fullName;
+@JsonIgnore
+@ManyToMany(mappedBy = "enrolledStudents")
 
-    public Student() {
+ final  private  Set<Course> courses=new HashSet<>();
+
+   public Student() {
     }
+
 
     public Long getStudentId() {
         return studentId;
@@ -35,4 +42,7 @@ public class Student {
     public Student(String fullName) {
         this.fullName = fullName;
     }
-}
+    public Set<Course> getCourses() {
+        return courses;
+    }
+    }

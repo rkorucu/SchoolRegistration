@@ -1,31 +1,21 @@
 package com.college.registration.dto;
 
 import com.college.registration.model.Course;
-import com.college.registration.model.Student;
-import com.college.registration.model.Teacher;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class StudentDTO {
- private String fullName;
- private Long studentId;
- private Set<Course>registrationCourse=new HashSet<>();
+
+    private Long studentId;
+    private String fullName;
 
 
-    public StudentDTO(Student student) {
-        this.fullName = student.getFullName();
-        this.studentId = student.getStudentId();
-    }
+    Set<Course> courses=new HashSet<>();
 
-    public String getFullName() {
-        return fullName;
-    }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+
+    public StudentDTO() {
     }
 
     public Long getStudentId() {
@@ -36,11 +26,14 @@ public class StudentDTO {
         this.studentId = studentId;
     }
 
-    public Set<Course> getRegistrationCourse() {
-        return registrationCourse;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setRegistrationCourse(Set<Course> registrationCourse) {
-        this.registrationCourse = registrationCourse;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+    public Set<Course> getCourses() {
+        return courses;
     }
 }

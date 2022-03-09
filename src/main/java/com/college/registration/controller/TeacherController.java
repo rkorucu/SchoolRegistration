@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "teachers")
+@RequestMapping(value = "/teachers")
 public class TeacherController {
     @Autowired
     TeacherService teacherService;
@@ -17,8 +17,8 @@ public class TeacherController {
     }
 
       @PostMapping
-              public Long addNewTeacher(@RequestBody Teacher teacher){
-        return teacherService.addTeacher(teacher);
+      public Long addNewTeacher(@RequestBody Teacher teacher){
+        return teacherService.addNewTeacher(teacher);
       }
 
 
