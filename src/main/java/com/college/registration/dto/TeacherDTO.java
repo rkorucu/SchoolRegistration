@@ -10,15 +10,12 @@ public class TeacherDTO {
 
     private String fullName;
     private Long teacherId;
-private Set<Course> courses=new HashSet<>();
+   private Set<Course> courses=new HashSet<>();
 
-
-
-    public TeacherDTO(){
+   public TeacherDTO(){
 
   }
-
-    public TeacherDTO(String fullName, Long teacherId) {
+  public TeacherDTO(String fullName, Long teacherId) {
         this.fullName = fullName;
         this.teacherId = teacherId;
     }

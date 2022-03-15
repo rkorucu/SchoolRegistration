@@ -12,13 +12,14 @@ public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long teacherId;
+
+    @Column(name = "fullName")
     private String fullName;
 
     @JsonIgnore
     @OneToMany(mappedBy = "teacher")
 
     private final Set<Course> courses=new HashSet<>();
-
 
     public Teacher() {
     }

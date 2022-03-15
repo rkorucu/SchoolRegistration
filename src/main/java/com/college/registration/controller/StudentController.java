@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
+import java.util.Set;
 
 
 @RestController
@@ -18,16 +19,16 @@ public class StudentController {
     StudentService studentService;
 
     @GetMapping
-    public Iterable<Student> getAllStudents(){
-        return  studentService.getAllStudents();
+    public Iterable<Student> getAllStudents() {
+        return studentService.getAllStudents();
     }
 
     @PostMapping
     public Object registerNewStudent(@RequestBody StudentDTO studentDTO) {
-      return studentService.addNewStudent(studentDTO);
+        return studentService.addNewStudent(studentDTO);
     }
 
-        //to request info  with studentId from database
+    //to request info  with studentId from database
 //     @GetMapping("/{studentId}")
 //    public Optional<Student> getStudentId(@PathVariable Long studentId){
 //     return  studentService.getStudentById(studentId);
@@ -35,26 +36,33 @@ public class StudentController {
 //
 
     //PathVariable annotation would be an endpoint that identifies an entity with a primary key:
-  @GetMapping("/{studentId}")
-   public StudentDTO getStudentId(@PathVariable Long studentId){
+    @GetMapping("/{studentId}")
+    public StudentDTO getStudentId(@PathVariable Long studentId) {
         return studentService.getStudentId(studentId);
     }
 
 
-    //Query Path parameters
-    @GetMapping("/fullName")
-    public List<StudentDTO>getStudentFullName(@RequestParam String fullName){
+//    //Query Path parameters
+//    @GetMapping("/fullName")
+//    public List<StudentDTO> getStudentFullName(@RequestParam String fullName) {
+//        return studentService.getStudentFullName(fullName);
+//
+//    }
+
+    //     this method is Path parameters
+    @GetMapping(value = "/fullName/{fullName}")
+    public List<StudentDTO> getStudentFullName(@PathVariable String fullName) {
         return studentService.getStudentFullName(fullName);
     }
 
 
-//     this method is Path parameters
-//              @GetMapping(value = "/fullName/{fullName}")
-//         public List<StudentDTO>getStudentFullName(@PathVariable String fullName){
-//             return studentService.getStudentFullName(fullName);
-//
-
+        @GetMapping("/{studentId}/courses")
+        public Set<Course> getStudentCourses (@PathVariable Long studentId){
+            return studentService.getStudentCourses(studentId);
+        }
 
 }
+
+
 
 

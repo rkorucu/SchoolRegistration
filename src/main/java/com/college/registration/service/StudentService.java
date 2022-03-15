@@ -10,16 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
     @Autowired
-    CourseService  courseService;
+    CourseService courseService;
     @Autowired
     StudentRepository studentRepository;
 
@@ -56,13 +53,13 @@ public class StudentService {
 
 
     /**
-     * Yeni bir method yazarak getStudentDTO ogrecinin id ve ismini
-     * Student modelini kullanarak  GetStudentDto set ediliyor.
-     * Methodun yazilma amaci : sadece gerekli olan bilgiler user a  aktarilirsin.
-     * Şimdi, is ve isim  nesnelerini tek bir GetStudentDto nesnesine eşlemenin bir yoluna ihtiyacımız olacak.
+     *        By writing a new method, getStudentDTO student's id and name
+     *        GetStudentDto is set using Student model.
+     *        The purpose of writing the method: only necessary information is transferred to the user.
+     *       Now we'll need a way to map the is and name objects to a single GetStudentDto object.
      */
 
-    //Student den bilgiler alinarak StudentDTo set ediyoruz
+
     private StudentDTO convertToDto(Student student) {
         StudentDTO studentDTO = new StudentDTO();
         studentDTO.setFullName(student.getFullName());
@@ -70,8 +67,17 @@ public class StudentService {
         return studentDTO;
     }
 
-
+     // get courses list which enrolled student with id
+    public Set<Course> getStudentCourses(Long studentId) {
+        Optional<Student> student=studentRepository.findById(studentId);
+        if(student.isEmpty()|| student.get().getCourses()==null){
+            return null;
+        }
+        return student.get().getCourses();
+    }
 }
+
+
 
 
 

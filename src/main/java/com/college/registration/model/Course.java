@@ -1,38 +1,42 @@
 package com.college.registration.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
 @Table(name="courses")
 public class Course {
-
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-
     private Long courseId;
 
-    @ManyToMany
-    @JoinTable(name = "studentsEnrolled",
-    //create first column to course inside table
-    joinColumns =  @JoinColumn(name = "course_id"),
-  // create second column for studentId .And relationship each other
-     inverseJoinColumns = @JoinColumn(name = "student_id"))
-  //It holds which course is student enroll
-    private  Set<Student> enrolledStudents=new HashSet<>();
-
-
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "teacher_id")
-     private Teacher teacher;
+    @Column(name = "name")
     private String name;
+ @Column(name = "courseCredit")
+ private Long courseCredit;
+
+
+    @ManyToOne
+    private Teacher teacher;
+@JsonIgnore
+    @ManyToMany
+    private  List<Student> enrolledStudent =new ArrayList<>();
+
+
+    public List<Student> getEnrolledStudent() {
+        return enrolledStudent;
+    }
+
+    public void setEnrolledStudent(List<Student> enrolledStudent) {
+        this.enrolledStudent = enrolledStudent;
+    }
 
     public Course() {
     }
-
     public Course(String name) {
         this.name = name;
     }
@@ -52,14 +56,20 @@ public class Course {
     public void setCourseId(Long courseId) {
         this.courseId = courseId;
     }
-    public Set<Student> getEnrolStudent() {
-        return enrolledStudents;
+    public Long getCourseCredit() {
+        return courseCredit;
+    }
+
+    public void setCourseCredit(Long courseCredit) {
+        this.courseCredit = courseCredit;
     }
 
 
-    public void getEnrolStudent(Student student) {
-        enrolledStudents.add(student);
+
+    public void getEnrolledStudent(Student student) {
+        enrolledStudent.add(student);
     }
+
     public Teacher getTeacher() {
         return teacher;
     }
@@ -67,6 +77,17 @@ public class Course {
 
     public void assignTeacher(Teacher teacher) {
         this.teacher=teacher;
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseId=" + courseId +
+                ", name='" + name + '\'' +
+                ", courseCredit=" + courseCredit +
+                ", teacher=" + teacher +
+                ", enrolledStudent=" + enrolledStudent +
+                '}';
     }
 
 

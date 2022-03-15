@@ -1,6 +1,7 @@
 package com.college.registration.repository;
 
 import com.college.registration.model.Course;
+import com.college.registration.model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,6 +15,4 @@ public interface CourseRepository extends JpaRepository<Course,Long> {
 
 
 
-
-    List<Course> getCourseByStudent( Long studentId);
 }

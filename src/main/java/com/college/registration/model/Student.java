@@ -13,15 +13,17 @@ public class Student {
    @Id
    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long studentId;
-    private String fullName;
-@JsonIgnore
-@ManyToMany(mappedBy = "enrolledStudents")
 
- final  private  Set<Course> courses=new HashSet<>();
+
+    @Column(name = "fullName")
+    private String fullName;
+
+   @JsonIgnore
+   @ManyToMany(mappedBy = "enrolledStudent")
+    private  Set<Course> courses=new HashSet<>();
 
    public Student() {
     }
-
 
     public Long getStudentId() {
         return studentId;
@@ -45,4 +47,14 @@ public class Student {
     public Set<Course> getCourses() {
         return courses;
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentId=" + studentId +
+                ", fullName='" + fullName + '\'' +
+                '}';
     }
+
+
+}

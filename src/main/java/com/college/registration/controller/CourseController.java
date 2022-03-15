@@ -15,7 +15,7 @@ import java.util.List;
 public class CourseController {
 
     @Autowired
-    CourseService courseService;
+   private CourseService courseService;
 
     @GetMapping
     public Iterable<Course> getAllCourses(){
@@ -28,24 +28,11 @@ public class CourseController {
 
     }
 
-    @PutMapping("/{courseId}/students/{studentId}")
-    Course enrolledStudentToCourse(@PathVariable Long courseId , @PathVariable Long studentId){
-      return courseService.enrolledStudentToCourse(courseId,studentId);
-
-    }
-    @PutMapping("/{courseId}/teachers/{teacherId}")
-    Course assignTeacherToCourse(@PathVariable Long courseId , @PathVariable Long teacherId){
-        return courseService.assignTeacherToCourse(courseId,teacherId);
-
-    }
-
-
     @GetMapping("/{courseId}/student")
-    public List<Student> getStudentByCourse(@PathVariable Long courseId,
+    public List<Student> getStudentListByStudentName(@PathVariable Long courseId,
                                             @RequestParam(value = "fullName") String fullName){
-        return courseService.getStudentByCourse(courseId,fullName);
+        return courseService.getStudentListByStudentName(courseId,fullName);
 
     }
-
 
 }
