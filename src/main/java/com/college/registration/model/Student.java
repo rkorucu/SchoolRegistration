@@ -12,7 +12,7 @@ public class Student {
 
    @Id
    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long studentId;
+    private long studentId;
 
 
     @Column(name = "fullName")

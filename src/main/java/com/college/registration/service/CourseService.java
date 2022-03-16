@@ -17,24 +17,30 @@ public class CourseService {
     @Autowired
     private CourseRepository courseRepository;
 
-    public Iterable<Course> getAllCourse() {
+    public List<Course> getAllCourse() {
         return courseRepository.findAll();
     }
 
-    public Long addNewCourse(Course course) {
-        return courseRepository.save(course).getCourseId();
+    public void addNewCourse(Course course) {
+     courseRepository.save(course);
     }
 
 
     public List<Student> getStudentListByStudentName(Long courseId, String fullName) {
-      Course course=courseRepository.findById(courseId).get();
-      List<Student>studentList=new ArrayList<>();
-      for(Student student:course.getEnrolledStudent()){
-          if(student.getFullName()!=null && student.getFullName().equalsIgnoreCase(fullName)){
-             studentList.add(student);
-          }
-      }
-      return studentList;
-}
+        Course course = courseRepository.findById(courseId).get();
+        List<Student> studentList = new ArrayList<>();
+        for (Student student : course.getEnrolledStudent()) {
+            if (student.getFullName() != null && student.getFullName().equalsIgnoreCase(fullName)) {
+                studentList.add(student);
+            }
+        }
+        return studentList;
     }
+
+    public List<Course> getCourseListByCourseCredit(Long courseCredit) {
+     return courseRepository.findByCourseCredit(courseCredit);
+
+
+    }
+}
 

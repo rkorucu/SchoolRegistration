@@ -34,7 +34,7 @@ public class Registration {
 
     // assigned teacher each course. And Save in database.
     @PutMapping("courses/{courseId}/teachers/{teacherId}")
-    Course assignTeacherToCourse(@PathVariable Long courseId , @PathVariable Long teacherId) {
+    Course assignTeacherToCourse(@PathVariable long courseId , @PathVariable long teacherId) {
         Course course = courseRepository.findById(courseId).get();
         Teacher teacher = teacherRepository.findById(teacherId).get();
         course.assignTeacher(teacher);

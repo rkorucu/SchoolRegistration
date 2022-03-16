@@ -61,6 +61,13 @@ public class StudentController {
             return studentService.getStudentCourses(studentId);
         }
 
+
+        @GetMapping("/{studentId}/courses/{courseCredit}")
+    public List<Course> getCourseListWithStudentIdByCourseCredits(@PathVariable long studentId,
+                                                                  @PathVariable long courseCredit){
+        return studentService.getCourseListWithStudentIdByCourseCredits(studentId,courseCredit);
+        }
+
 }
 
 

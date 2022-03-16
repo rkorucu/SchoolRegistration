@@ -10,19 +10,22 @@ import java.util.List;
 @Entity
 @Table(name="courses")
 public class Course {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long courseId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long courseId;
 
     @Column(name = "name")
     private String name;
+
  @Column(name = "courseCredit")
  private Long courseCredit;
 
 
     @ManyToOne
     private Teacher teacher;
-@JsonIgnore
+
+
     @ManyToMany
     private  List<Student> enrolledStudent =new ArrayList<>();
 

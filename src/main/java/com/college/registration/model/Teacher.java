@@ -11,7 +11,7 @@ import java.util.Set;
 public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long teacherId;
+    private long teacherId;
 
     @Column(name = "fullName")
     private String fullName;

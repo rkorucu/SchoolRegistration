@@ -18,21 +18,26 @@ public class CourseController {
    private CourseService courseService;
 
     @GetMapping
-    public Iterable<Course> getAllCourses(){
+    public List<Course> getAllCourses(){
         return courseService.getAllCourse();
     }
 
     @PostMapping
-   public Long addNewCourse(@RequestBody Course course){
-     return courseService.addNewCourse(course);
-
+   public void addNewCourse(@RequestBody Course course){
+      courseService.addNewCourse(course);
     }
+
 
     @GetMapping("/{courseId}/student")
     public List<Student> getStudentListByStudentName(@PathVariable Long courseId,
                                             @RequestParam(value = "fullName") String fullName){
         return courseService.getStudentListByStudentName(courseId,fullName);
 
+    }
+
+    @GetMapping("/{courseCredit}")
+    public List<Course> getCourseByCourseListCredit(@PathVariable Long courseCredit){
+        return courseService.getCourseListByCourseCredit(courseCredit);
     }
 
 }

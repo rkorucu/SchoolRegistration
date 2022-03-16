@@ -28,7 +28,7 @@ public class StudentService {
 
     public Object addNewStudent(StudentDTO studentDTO) {
         Student student = new Student();
-        studentDTO.setFullName(student.getFullName());
+        student.setFullName(studentDTO.getFullName());
         return studentRepository.save(student).getStudentId();
 
     }
@@ -53,10 +53,10 @@ public class StudentService {
 
 
     /**
-     *        By writing a new method, getStudentDTO student's id and name
-     *        GetStudentDto is set using Student model.
-     *        The purpose of writing the method: only necessary information is transferred to the user.
-     *       Now we'll need a way to map the is and name objects to a single GetStudentDto object.
+     * By writing a new method, getStudentDTO student's id and name
+     * GetStudentDto is set using Student model.
+     * The purpose of writing the method: only necessary information is transferred to the user.
+     * Now we'll need a way to map the is and name objects to a single GetStudentDto object.
      */
 
 
@@ -67,13 +67,26 @@ public class StudentService {
         return studentDTO;
     }
 
-     // get courses list which enrolled student with id
+    // get courses list which enrolled student with id
     public Set<Course> getStudentCourses(Long studentId) {
-        Optional<Student> student=studentRepository.findById(studentId);
-        if(student.isEmpty()|| student.get().getCourses()==null){
+        Optional<Student> student = studentRepository.findById(studentId);
+        if (student.isEmpty() || student.get().getCourses() == null) {
             return null;
         }
         return student.get().getCourses();
+    }
+
+    public List<Course> getCourseListWithStudentIdByCourseCredits(Long studentId, Long courseCredit) {
+        Student student = studentRepository.findById(studentId).get();
+
+        List<Course>courseList=new ArrayList<>();
+
+        for (Course course:student.getCourses()){
+            if(student.getStudentId()!=null && course.getCourseCredit().equals(courseCredit)){
+                courseList.add(course);
+            }
+        }
+return courseList;
     }
 }
 
